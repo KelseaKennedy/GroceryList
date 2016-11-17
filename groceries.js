@@ -24,16 +24,13 @@ function addItem() {
  
  btnClose.appendChild(iconClose);
  
+  item.appendChild(btnClose);
  list.appendChild(item);
- list.appendChild(btnClose);
+ 
     }
- 
-
- 
  
  document.getElementById("newItem").value = ""; 
 }
-
 
 function removeParentListItem() {
  var mom = this.parentNode;
