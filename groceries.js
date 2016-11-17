@@ -11,6 +11,7 @@ function addItem() {
  item.appendChild(itemName);
  
  var btnClose = document.createElement("button");
+ btnClose.addEventListener("click",removeParentListItem);
  
  btnClose.classList.add("btn");
  btnClose.classList.add("btn-danger");
@@ -25,6 +26,15 @@ function addItem() {
  
  list.appendChild(item);
  list.appendChild(btnClose);
+ 
+ function removeParentListItem() {
+ var mom = this.parentNode;
+ var grandma = mom.parentNode;
+ grandma.removeChild(mom);
+ 
+ }
+ 
+ 
  
  document.getElementById("newItem").value = ""; 
 }
