@@ -1,9 +1,9 @@
-
-
-
+var myList = [];
 function addItem() {
-    
- var input = document.getElementById("newItem").value;
+    var input = document.getElementById("newItem").value;
+    if(myList.indexOf(input) == -1) {
+ myList.push(input)
+ console.log(myList);
  var list = document.getElementById("listDisplay");
  
  var itemName = document.createTextNode(input);
@@ -26,18 +26,22 @@ function addItem() {
  
  list.appendChild(item);
  list.appendChild(btnClose);
+    }
  
- function removeParentListItem() {
- var mom = this.parentNode;
- var grandma = mom.parentNode;
- grandma.removeChild(mom);
- 
- }
- 
+
  
  
  document.getElementById("newItem").value = ""; 
 }
+
+
+function removeParentListItem() {
+ var mom = this.parentNode;
+ var grandma = mom.parentNode;
+ grandma.removeChild(mom);
+ 
+}
+
 //courtesy of w3schools, from: http://www.w3schools.com/js/js_cookies.asp
 function setCookie(cname, cvalue, exdays) {
     var d = new Date();
