@@ -1,7 +1,8 @@
 var myList = [];
 function addItem() {
     var input = document.getElementById("newItem").value;
-    if(myList.indexOf(input) == -1) {
+    if(myList.indexOf(input) == -1) 
+    {
  myList.push(input)
  console.log(myList);
  var list = document.getElementById("listDisplay");
@@ -64,3 +65,22 @@ function getCookie(cname) {
     }
     return "";
 }
+
+function saveList()
+{
+    var saveItem = myList.toString();
+    setCookie("listItems",saveItem , 10)
+}
+
+
+function clearList()
+{
+  var display = document.getElementById("listDisplay");
+  while( display.firstChild) {
+  display.removeChild(display.firstChild);
+  
+ 
+}
+myList = [];
+}
+
