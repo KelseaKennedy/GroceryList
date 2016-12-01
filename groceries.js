@@ -1,34 +1,8 @@
 var myList = [];
+window.onload = loadCookieList;
 function addItem() {
     var input = document.getElementById("newItem").value;
-    if(myList.indexOf(input) == -1) 
-    {
- myList.push(input)
- console.log(myList);
- var list = document.getElementById("listDisplay");
- 
- var itemName = document.createTextNode(input);
- var item =  document.createElement("li");
- item.appendChild(itemName);
- 
- var btnClose = document.createElement("button");
- btnClose.addEventListener("click",removeParentListItem);
- 
- btnClose.classList.add("btn");
- btnClose.classList.add("btn-danger");
- btnClose.classList.add("btn-xs");
- 
- var iconClose = document.createElement("span");
- 
- iconClose.classList.add("glyphicon");
- iconClose.classList.add("glyphicon-remove");
- 
- btnClose.appendChild(iconClose);
- 
-  item.appendChild(btnClose);
- list.appendChild(item);
- 
-    }
+ displayItem(input); 
  
  document.getElementById("newItem").value = ""; 
 }
@@ -69,7 +43,7 @@ function getCookie(cname) {
 function saveList()
 {
     var saveItem = myList.toString();
-    setCookie("listItems",saveItem , 10)
+    setCookie("listItems",saveItem , 100)
 }
 
 
@@ -84,3 +58,45 @@ function clearList()
 myList = [];
 }
 
+function displayItem(input) {
+    
+    if(myList.indexOf(input) == -1) 
+    {
+ myList.push(input)
+ console.log(myList);
+ var list = document.getElementById("listDisplay");
+ 
+ var itemName = document.createTextNode(input);
+ var item =  document.createElement("li");
+ item.appendChild(itemName);
+ 
+ var btnClose = document.createElement("button");
+ btnClose.addEventListener("click",removeParentListItem);
+ 
+ btnClose.classList.add("btn");
+ btnClose.classList.add("btn-danger");
+ btnClose.classList.add("btn-xs");
+ 
+ var iconClose = document.createElement("span");
+ 
+ iconClose.classList.add("glyphicon");
+ iconClose.classList.add("glyphicon-remove");
+ 
+ btnClose.appendChild(iconClose);
+ 
+  item.appendChild(btnClose);
+ list.appendChild(item);
+ 
+    }
+}
+
+function loadCookieList () {
+    var loadCookie = getCookie("listItems"); 
+    var arrayCookie; 
+    arrayCookie = loadCookie.split(",");
+    
+    for(var i=0; i < arrayCookie.length; i++)
+    {
+        displayItem(arrayCookie[i]);
+    }
+}
